@@ -127,7 +127,7 @@ if user_question:
 
         try:
             with st.spinner("🤖 Yanıt oluşturuluyor..."):
-                chunk_size = 12000  # Her seferde 12000 karakter gönder
+                chunk_size = 20000  # Her seferde 20000 karakter gönder
                 chunks = [full_text[i:i+chunk_size] for i in range(0, len(full_text), chunk_size)]
 
                 full_response = ""
