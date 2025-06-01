@@ -1,0 +1,6 @@
+faiss-cpu
+pymupdf
+numpy
+google-generativeai
+tiktoken
+pandas
