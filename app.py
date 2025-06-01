@@ -105,6 +105,7 @@ def safe_generate(prompt, max_retries=3, wait_time=15):
     for attempt in range(max_retries):
         try:
             response = model.generate_content(prompt)
+            time.sleep(3)
             return response.text.strip()
         except Exception as e:
             if "429" in str(e):
@@ -127,7 +128,7 @@ if user_question:
 
         try:
             with st.spinner("🤖 Yanıt oluşturuluyor..."):
-                chunk_size = 20000  # Her seferde 20000 karakter gönder
+                chunk_size = 12000  # Her seferde 12000 karakter gönder
                 chunks = [full_text[i:i+chunk_size] for i in range(0, len(full_text), chunk_size)]
 
                 full_response = ""
