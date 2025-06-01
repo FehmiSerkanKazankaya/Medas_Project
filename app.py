@@ -83,6 +83,8 @@ elif selected_option == "Yüklenen PDF'yi Kullan":
 # Kullanıcıdan soru al
 user_question = st.text_input("❓ Sorunuzu yazın:")
 
+use_summary = st.checkbox("Yanıtları birleştirerek özetle", value=True)
+
 # PDF'ten metin çıkarma fonksiyonu
 def extract_text_from_pdf(file_path=None, file_bytes=None):
     text = ""
@@ -142,13 +144,16 @@ if user_question:
                     partial_answer = safe_generate(prompt)
                     full_response += f"\n\n--- Parça {i+1} Cevabı ---\n{partial_answer}"
 
-                # İsteğe bağlı: tüm parçaları tek bir özet yanıtla birleştirme
-                summary_prompt = f"""
-                Aşağıda parçalar halinde üretilmiş teknik yanıtlar bulunmaktadır. Bunları dikkate alarak bütünsel, açık ve tekrar içermeyen bir yanıt ver:
+                if use_summary:
+                  summary_prompt = f"""
+                  Aşağıda parçalar halinde üretilmiş teknik yanıtlar bulunmaktadır. Bunları dikkate alarak bütünsel, açık ve tekrar içermeyen bir yanıt ver:
 
-                {full_response}
-                """
-                final_response = model.generate_content(summary_prompt).text.strip()
+                  {full_response}
+                  """
+                  final_response = safe_generate(summary_prompt)
+                else:
+                  final_response = full_response
+
 
                 st.success("✅ Yanıt:")
                 st.write(final_response)
