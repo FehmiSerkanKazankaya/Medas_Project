@@ -30,7 +30,7 @@ model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
 
 # --- ÖZETLER BÖLÜMÜ ---
 st.title("MEVZUATBOT")
-st.header("Elektrik Piyasası Duyuruları - Özet Arayüzü")
+st.header("Elektrik Piyasası Duyuruları - Özetler")
 
 # Veritabanından duyuru özetlerini çek
 cursor.execute("SELECT dosya_adi, tarih, ozet FROM ozetler ORDER BY tarih DESC")
