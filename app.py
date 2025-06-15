@@ -29,8 +29,8 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
 
 # --- ÖZETLER BÖLÜMÜ ---
-st.title("CHATBOT " \
-"Özet Arayüzü")
+st.title("MEVZUATBOT")
+st.header("Elektrik Piyasası Duyuruları - Özet Arayüzü")
 
 # Veritabanından duyuru özetlerini çek
 cursor.execute("SELECT dosya_adi, tarih, ozet FROM ozetler ORDER BY tarih DESC")
