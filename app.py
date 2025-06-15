@@ -29,7 +29,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
 
 # --- ÖZETLER BÖLÜMÜ ---
-st.title("📄 Elektrik Piyasası Duyuruları - Özet Arayüzü")
+st.title("Elektrik Piyasası Duyuruları - Özet Arayüzü")
 
 # Veritabanından duyuru özetlerini çek
 cursor.execute("SELECT dosya_adi, tarih, ozet FROM ozetler ORDER BY tarih DESC")
@@ -51,7 +51,7 @@ else:
 st.markdown("---")
 
 # --- CHATBOT BÖLÜMÜ ---
-st.header("💬 Chatbot - PDF içeriğine dayalı yanıtlar")
+st.header("Chatbot - PDF içeriğine dayalı yanıtlar")
 
 # 📂 Klasörden PDF seçimi
 pdf_folder = "indirilenler"
@@ -71,7 +71,7 @@ pdf_bytes = None
 
 if selected_option == "Klasörden Seç":
     if pdf_files:
-        selected_pdf = st.selectbox("📂 Bir PDF seçin:", pdf_files)
+        selected_pdf = st.selectbox("Bir PDF seçin:", pdf_files)
     else:
         st.error("Klasörde hiç PDF bulunamadı.")
 elif selected_option == "Yüklenen PDF'yi Kullan":
@@ -81,7 +81,7 @@ elif selected_option == "Yüklenen PDF'yi Kullan":
         st.info("Lütfen bir PDF yükleyin.")
 
 # Kullanıcıdan soru al
-user_question = st.text_input("❓ Sorunuzu yazın:")
+user_question = st.text_input("Sorunuzu yazın:")
 
 use_summary = st.checkbox("Yanıtları birleştirerek özetle", value=True)
 
@@ -170,7 +170,7 @@ if user_question:
 st.markdown("---")
 
 # --- CHAT GEÇMİŞİ BÖLÜMÜ ---
-st.header("🕓 Sohbet Geçmişi")
+st.header("Sohbet Geçmişi")
 
 cursor.execute("SELECT id, dosya_adi, soru, cevap, tarih FROM chat_history ORDER BY tarih DESC")
 chat_rows = cursor.fetchall()
